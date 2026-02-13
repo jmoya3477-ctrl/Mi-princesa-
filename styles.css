@@ -1,0 +1,258 @@
+/* --- VARIABLES Y CONFIGURACIÓN BASE --- */
+:root {
+  --env-color: #ff477e;
+  --env-dark: #a31621;
+  --paper: #f8abb6;
+  --celeste: #a2d2ff;
+  --celeste-glow: #00d4ff;
+  --bg-dark: #2b0015;
+   --pink-bg: #fce4ec;
+}
+
+body {
+  margin: 0;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: radial-gradient(circle, #3d0019, #1a000a);
+  font-family: 'Segoe UI', sans-serif;
+  overflow: hidden;
+}
+
+.container {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #fce4ec;
+  border: 1px solid var(--dark-red);
+  width: 100%;
+  height: 100%;
+}
+
+/* --- SOBRE (CORREGIDO PARA QUE NO SE ASOME LA CARTA) --- */
+.envelope-wrapper {
+  perspective: 1200px;          /* Da profundidad 3D al flap */
+  margin: 50px auto;
+}
+
+.envelope {
+  position: relative;
+  width: 550px;                 /* Un poco más ancho para que quede elegante */
+  height: 380px;
+  background: #ff69b4;          /* Rosa fuerte */
+  border-radius: 12px 12px 0 0;
+  box-shadow: 0 20px 50px rgba(0,0,0,0.3);
+  cursor: pointer;
+  overflow: hidden;             /* Evita que se salga contenido */
+}
+
+.envelope-back {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to bottom, #ff1493, #db7093); /* Degradado rosa-rojo */
+  border-radius: 12px;
+  z-index: 1;                   /* Detrás de todo */
+}
+
+.flap {
+  position: absolute;
+  top: -2px;                    /* Cubre bien el borde superior */
+  left: 0;
+  width: 100%;
+  height: 140px;                /* Más alto = tapa mejor la carta */
+  background: #c71585;          /* Rojo oscuro para contraste */
+  clip-path: polygon(0 0, 50% 100%, 100% 0); /* Triángulo clásico */
+  transform-origin: top center;
+  transition: transform 1.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  z-index: 20;                  /* Siempre encima de la carta */
+  box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+}
+
+.letter {
+  position: absolute;
+  top: 5px;                    /* Baja un poco para que quede dentro */
+  left: 25px;
+  right: 25px;
+  bottom: 15px;
+  background: #fff0f5;
+  border: 2px solid #ffb6c1;
+  border-radius: 10px;
+  padding: 35px;
+  text-align: center;
+  color: #333;
+  opacity: 0;                   /* Invisible al inicio */
+  transform: translateY(30px) scale(0.85);
+  transition: all 1.2s ease 0.4s;
+  z-index: 5;                   /* Debajo del flap */
+  box-shadow: 0 5px 20px rgba(199,21,133,0.2);
+}
+
+.envelope.open .flap {
+  transform: rotateX(180deg);   /* Abre hacia atrás en 3D */
+}
+
+.envelope.open .letter {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+/* Corazón pulsante (ya lo tienes, pero refuerza) */
+.heart-glow {
+  font-size: 5rem;
+  margin: 15px 0;
+  animation: pulse 2.5s infinite ease-in-out;
+  text-shadow: 0 0 20px #69ebff, 0 0 30px #0ec6fe;
+}
+
+@keyframes pulse {
+  0%, 100% { transform: scale(1); }
+  50%      { transform: scale(1.12); }
+}
+/* --- PERIÓDICO "THE LOVE TIMES" --- */
+.newspaper-container {
+  position: fixed;
+  inset: 0;
+  background: #fce4ec;
+  z-index: 1000;
+  padding: 20px;
+  overflow-y: auto;
+  display: none; /* Lo activa el JS al decir SÍ */
+}
+
+.newspaper-content {
+  max-width: 700px; /* Limita el ancho para que parezca una columna de diario */
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Centra todo el contenido, incluyendo el Tres en Raya */
+  padding: 20px;
+  background:  #fac8cf;
+  border: 3px solid  #a31621;
+  box-shadow: 10px 10px 0px #ffdae6;
+}
+
+.news-header {
+  text-align: center;
+  border-bottom: 5px double #a31621;;
+  margin-bottom: 25px;
+}
+
+.news-title {
+  font-family: 'Great Vibes', cursive;
+  font-size: 3.5rem;
+  margin: 5px 0;
+  color:  #a31621;
+}
+
+/* TRES EN RAYA DE RAZONES */
+.tic-tac-toe {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* Crea 3 columnas iguales */
+  gap: 15px;
+  width: 100%; /* Se adapta al ancho del periódico */
+  max-width: 850px; /* Evita que se haga gigante en pantallas grandes */
+  margin: 25px 0;
+}
+
+.cell {
+  aspect-ratio: 1 / 1; /* Mantiene las celdas siempre cuadradas */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid #a31621;;
+  background: #fac8cf;
+  padding: 0px;
+  overflow: hidden; /* Evita que el texto se salga si es muy largo */
+}
+
+/* Ajuste para que las letras se moldeen al tamaño de la celda */
+.reason {
+  font-family: 'Parisienne', cursive;
+  font-size: clamp(0.4rem, 2vw, 0.9rem); /* Tamaño de letra fluido: se encoge en móviles */
+  text-align: center;
+  word-wrap: break-word; /* Rompe las palabras si son muy largas */
+}
+
+.cell.heart, .cell.heart-cell {
+  font-size: 80%;               /* El corazón ocupa el 80-90% de la celda */
+  padding: 0;                   /* Quita padding para maximizar espacio */
+  background: rgba(255, 71, 126, 0.1); /* fondo sutil rosa para resaltar */
+}
+
+.cell.heart::before,
+.cell.heart-cell::before {
+  content: "❤️";               /* Asegura que sea el emoji correcto */
+  font-size: 6rem;              /* Fallback fijo si clamp no funciona bien */
+}
+
+@keyframes pulse {
+  0%, 100% { transform: scale(1); }
+  50%      { transform: scale(1.18); }  /* late más notorio con tamaño grande */
+}
+/* --- BOTÓN FINAL Y MENSAJES --- */
+.btn-final {
+  width: 100%;
+  padding: 15px;
+  background: var(--env-dark);
+  color: white;
+  border: none;
+  font-family: 'Dancing Script', cursive;
+  font-size: 1.6rem;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.final-message {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.9);
+  z-index: 500;
+  color: white;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+/* Estilo de Tarjeta de Invitación */
+.invitation-card {
+    background: #fffdf5 !important;
+    border: 2px solid #a31621;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.invitation-border {
+    border: 1px solid #a31621;
+    padding: 15px;
+    height: 90%;
+    width: 90%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.invite-title {
+    font-family: 'Great Vibes', cursive;
+    font-size: 2rem !important;
+    margin-bottom: 10px;
+}
+
+.invite-text {
+    font-family: 'Parisienne', cursive;
+    font-size: 1.1rem;
+    color: #333;
+}
+
+.invite-details {
+    margin: 15px 0;
+    font-family: 'Segoe UI', sans-serif;
+    font-size: 0.8rem;
+    border-top: 1px solid #ddd;
+    padding-top: 10px;
+}

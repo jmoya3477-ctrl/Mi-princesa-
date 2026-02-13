@@ -1,59 +1,63 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Árbol de Amor Animado</title>
-    <!-- Autoría y derechos -->
-    <meta name="author" content="Zero">
-    <meta name="copyright" content="Zero - Código libre no comercial">
-    <meta name="description" content="Árbol de Amor Animado: una sorpresa interactiva y romántica para dedicar a tu pareja o ser querido. Código libre para uso personal, educativo o de inspiración.">
-    <meta name="keywords" content="amor, sorpresa, romántico, dedicatoria, animación, árbol, corazones, pareja, aniversario, regalo digital">
-    <meta name="robots" content="index, follow">
-    <!-- Estilos -->
-    <link rel="stylesheet" href="Css/style.css">
-    <link rel="stylesheet" href="Css/style.mobile.css" media="only screen and (max-width: 600px)">
-    <style>
-      .tree-container {
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        width: 400px;
-        height: 400px;
-        z-index: 2;
-      }
-      .animated-heart {
-        transform-origin: center;
-        animation: beat 1s infinite;
-      }
-      @keyframes beat {
-        0%, 100% { transform: scale(1); }
-        20% { transform: scale(1.1); }
-        40% { transform: scale(0.95); }
-        60% { transform: scale(1.08); }
-        80% { transform: scale(1); }
-      }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Para ti, mi amor ❤️</title>
+  <link rel="stylesheet" href="css/styles.css">
+  <link href="https://fonts.google.com/share?selection.family=Dancing+Script:wght@400..700" rel="stylesheet">
 </head>
-  <body>
-    <div id="floating-objects"></div>
-    <div class="dedication-text" id="dedication-text">
-        <div class="signature" id="signature"></div>
-    </div>
-    <div class="countdown" id="countdown"></div>
-    <div class="tree-container" id="tree-container"></div>
+<body>
+
+  <div class="container">
+    <div class="envelope-wrapper">
+  <div class="envelope" id="envelope">
+    <!-- Fondo del sobre (lo que se ve cerrado) -->
+    <div class="envelope-back"></div>
     
-    <div class="contenedor-frase">
-        <img src="Img/Álbum de de Estrella de Mora_.jpg" width="100%" alt="Fondo" class="imagen-album">
-        
-        <p class="frase-parte superior">Puedo ser tu estrella</p>
-        <p class="frase-parte inferior">y tú mi media luna</p>
+    <!-- Flap (tapa todo) -->
+    <div class="flap"></div>
+
+    <div class="heart-seal" id="openBtn">🩵</div>
+    
+    <!-- Carta / invitación (escondida) -->
+    <div class="letter">
+      <div class="letter-content">
+        <h2>TE TENGO UNA SORPRESA</h2>
+        <h2>ESPERO TE GUSTE😁</h2>
+        <div class="heart-glow">🩵</div>               
+        <p>Con mucho amor y dedicacion, tu odiseo 🩵 (no me paresco en nada lo se pero queda bien JJSSJSJSJ) </p>
+      </div>
+    </div>
+  </div>
+</div>
+
+    <div id="newspaper" class="newspaper-container" style="display: none;">
+        <div class="newspaper-content">
+            <header class="news-header">
+                <h1 class="news-title">LOS MEJORES 8 MESES A TU LADO MI PRINCESA 🩵</h1>
+                <div class="news-headline">"SIEMPRE SERAS EL AMOR DE MI VIDA 🥹"</div>
+            </header>
+            <div class="tic-tac-toe">
+                <div class="cell reason">Eres la niña de mis sueños y la que inexplicablemente me enamoro sin yo esperarmelo la vd la que hizo que mi vida dejara de ser tan monotona y que con tu encanto le diste esa pizca de tranquila y amor que me faltaba, gracias po mejorar mi vida entera🥹.</div>
+                <div class="cell heart"></div>
+                <div class="cell reason">Gracias por siempre escucharme aunque a veces no te sientas bien, gracias por el simple hecho de darme la oportunidad de demostrarte lo mucho que te amo y tomar el riesgo de seguir con esta relacion a pesar de tus papas,te lo agradezco😘. </div>
+                <div class="cell heart"></div>
+                <div class="cell reason">Te agradezco cada pequeño beso, cada abrazo, cada caricia, cada momento compartido a tu lado pq sinceramente para mi fueron los mejores de mi vida, gracias por esforzarte tanto y por ser la mejor novia del mundo🫶. </div>
+                <div class="cell heart"></div>
+                <div class="cell reason">Eres hermosa, perfecta, bella, maravillosa, eres mi razon de ser y cada dia me enamoro mas de ti a pesar de la distancia, pq prefiero mil veces tener que esperar para verte una vez al mes y sentime tan emocionado que no pueda contener las ganas de besarte😁.</div>
+                <div class="cell heart"></div>
+                <div class="cell reason">Espero te haya quedado bastante claro que eres la unica mujer que me gusta y me tiene completamente enamorado ademas de que soy completamente tuyo y de nadie mas, y que sin lugar a dudas no me voy a cansar de esperarte pq ¿quien en su sano juicio se cansaria de esperar al amor de su vida?.</div>
+            </div>
+            <button class="btn-final" id="vaultBtn">Tengo una última sorpresa...</button>
+        </div>
     </div>
 
-    <audio src="Music/Mora - MEDIA LUNA (Visualizer)  ESTRELLA.mp3" id="bg-music" preload="auto"></audio>
-    <script src="Js/script.js"></script>
+  <audio id="bgMusic" loop>
+    <source src="assets/musica/Maluma - ADMV (Official Video).mp3" type="audio/mpeg">
+  </audio>
+
+  <script src="js/animations.js"></script>
+  <script src="js/interactions.js"></script> <script src="js/main.js"></script>
 </body>
 </html>
-
-
